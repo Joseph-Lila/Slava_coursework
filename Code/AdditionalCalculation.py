@@ -1,4 +1,5 @@
 from ctypes import *
+import unittest
 
 
 class AdditionalCalculation:
@@ -11,7 +12,16 @@ class AdditionalCalculation:
         calculate_expression.restype = c_double
         temp_x = start_x
         delta_x = (finish_x - start_x) / (amount_x - 1)
-        for i in range(amount_x):
-            container.append(calculate_expression(input_str, str_len, temp_x))
-            temp_x += delta_x
+        try:
+            for i in range(amount_x):
+                container.append(
+                    calculate_expression(
+                        c_char_p(input_str),
+                        c_int(str_len),
+                        c_double(temp_x)
+                    )
+                )
+                temp_x += delta_x
+        except:
+            return None
         return container
