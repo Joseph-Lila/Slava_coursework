@@ -1,24 +1,51 @@
 from ctypes import *
+from AdditionalCalculation import AdditionalCalculation
+from TeilorInterpolator import TeilorInterpolator
+from LagrangeInterpolator import LagrangeInterpolator
 
-
-def calculate_expression_in_range(input_str, str_len, start_x, finish_x, amount_x, container, lib):
-    calculate_expression = lib.calculateExpression
-    calculate_expression.argtypes = [c_char_p, c_int, c_double]
-    calculate_expression.restype = c_double
-    temp_x = start_x
-    delta_x = (finish_x - start_x) / (amount_x - 1)
-    for i in range(amount_x):
-        container.append(calculate_expression(input_str, str_len, temp_x))
-        temp_x += delta_x
-    return container
-
-
-def teilor_interpolate(x_values, y_values, initial_count, start, end, dots_count, x_buffer, y_buffer, lib):
-    calculate_all_derivation_with_extreme = lib.calculate_all_derivation_with_extreme
-    calculate_all_derivation_with_extreme.argtypes = []
 
 def main():
-    pass
+    lib = CDLL(r"D:\University\Slava_coursework\New\dll\math.dll")
+
+    size_initial = 10
+    start = 0
+    finish = 4.5
+    expr = b"sin(x)"
+    x_initial = []
+    y_initial = []
+    temp = start
+    for i in range(size_initial):
+        x_initial.append(temp)
+        temp += (finish - start) / (size_initial - 1)
+
+    print("--X--")
+    for item in x_initial:
+        print(item)
+    print("-----")
+
+    y_initial = AdditionalCalculation(lib).\
+        calculate_expression_in_range\
+        (
+            c_char_p(expr),
+            len(expr),
+            start,
+            finish,
+            size_initial,
+            y_initial
+        )
+
+    print("--Y--")
+    for item in y_initial:
+        print(str(item) + "\n", end="")
+    print("-----", end="\n")
+    print("\n\n")
+
+    size_interpolate = 100
+    x_teilor_interpolate = []
+    y_teilor_interpolate = []
+
+    #
+
 
 if __name__ == "__main__":
     main()
