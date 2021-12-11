@@ -1,5 +1,5 @@
 from Operations import fact
-import ctypes
+from ctypes import *
 
 
 class TeilorInterpolator:
@@ -24,8 +24,7 @@ class TeilorInterpolator:
         for item in der:
             for i in range(arr_size):
                 item.append(0)
-        print(der[0][0])
-        print(der)
+
 
 
     def left_final_derivate(self, fun, h):
@@ -39,29 +38,41 @@ class TeilorInterpolator:
         res = 3 * fun[k] - 4 * fun[k - 1] + fun[k - 2]
         return res / (2 * h)
 
-
     def teilor_function_value(self, x_arg, arg, fun, arr_size, derivation, derivation_order):
         nearest_index = self.find_nearesr_index(x_arg, arg, arr_size)
         res = fun[nearest_index]
 
-        for i in range(len(derivation_order)):
+        for i in range(derivation_order):
             dif = pow(x_arg - arg[nearest_index], i + 1)
             factorial = fact(i + 1)
             proizvodnaya = derivation[nearest_index][i]
-            self.lib.MethodTeilorASM()
-            #Нужно заполнить!
-        return  res
+            res = self.lib.MethodTeilorASM(
+                c_double(dif),
+                c_double(factorial),
+                c_double(proizvodnaya),
+                c_double(res)
+            )
+        return res
 
     def find_nearesr_index(self, value, arr, arr_size):
         index = 0
         difference = 0
-        arr_0= arr[0]
-        self.lib.MethodNearestFirstASM()
-        # Нужно заполнить!
-        for i in range(len(arr_size)):
+        arr_0 = arr[0]
+        difference = self.lib.MethodNearestFirstASM(
+            c_double(value),
+            c_double(arr[0]),
+            c_double(arr_size)
+        )
+        for i in range(arr_size):
             item = arr[i]
-            self.lib.MethodNearestSecondASM()
-            # Нужно заполнить!
+            index = self.lib.MethodNearestSecondASM(
+                c_double(value),
+                c_double(item),
+                c_double(difference),
+                c_int(i),
+                c_int(index)
+            )
+        return index
 
     def calculate_error(self, input_str, str_len, start_x, finish_x, amount_x, fun):
         exact_value = []
@@ -70,6 +81,7 @@ class TeilorInterpolator:
         for i in range(len(amount_x)):
             error += abs(exact_value[i] - fun[i])
         return error / amount_x
+
 
 if __name__ == "__main__":
     TeilorInterpolator(None).calculate_all_derivation_with_extreme(1, 2, 5, 1, 1)
