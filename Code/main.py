@@ -26,13 +26,18 @@ def main():
     y_initial = AdditionalCalculation(lib).\
         calculate_expression_in_range\
         (
-            c_char_p(expr),
-            c_int(len(expr)),
+            expr,
+            len(expr),
             start,
             finish,
             size_initial,
             y_initial
         )
+
+    # GUI!!!
+    if y_initial is None:
+        print("Выражение некорректно записано")
+        return
 
     print("--Y--")
     for item in y_initial:

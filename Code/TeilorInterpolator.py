@@ -1,6 +1,15 @@
-from Operations import fact
 from AdditionalCalculation import AdditionalCalculation
 from ctypes import *
+from numpy.ctypeslib import ndpointer
+import numpy as np
+
+
+def fact(n):
+    if n < 0:
+        return 0
+    if n == 0:
+        return 1
+    return n * fact(n - 1)
 
 
 class TeilorInterpolator:
@@ -52,7 +61,6 @@ class TeilorInterpolator:
             for i in range(1, arr_size - 1):
                 der[i][k] = (der[i + 1][k - 1] - der[i - 1][k - 1]) / (arg[i + 1] - arg[i - 1])
             der[arr_size - 1][k] = self.right_final_derivate(der_temp, h, arr_size)
-
         return der
 
     def left_final_derivate(self, fun, h):
@@ -73,7 +81,10 @@ class TeilorInterpolator:
             dif = pow(x_arg - arg[nearest_index], i + 1)
             factorial = fact(i + 1)
             proizvodnaya = derivation[nearest_index][i]
-            res = self.lib.MethodTeilorASM(
+            method_teilorASM = self.lib.MethodTeilorASM
+            method_teilorASM.argtypes = [c_double, c_double, c_double, c_double]
+            method_teilorASM.restype = c_double
+            res = method_teilorASM(
                 c_double(dif),
                 c_double(factorial),
                 c_double(proizvodnaya),
@@ -85,25 +96,30 @@ class TeilorInterpolator:
         index = 0
         difference = 0
         arr_0 = arr[0]
-        difference = self.lib.MethodNearestFirstASM(
+        method_nearest_firstASM = self.lib.MethodNearestFirstASM
+        method_nearest_firstASM.argtypes = [c_double, c_double, c_double]
+        method_nearest_firstASM.restype = c_double
+        difference = method_nearest_firstASM(
             c_double(value),
-            c_double(arr[0]),
+            c_double(arr_0),
             c_double(arr_size)
         )
-        for i in range(arr_size):
-            item = arr[i]
-            index = self.lib.MethodNearestSecondASM(
-                c_double(value),
-                c_double(item),
-                c_double(difference),
-                c_int(i),
-                c_int(index)
-            )
+        new_arr = np.array(arr, dtype=c_double)
+        method_nearest_secondASM = self.lib.MethodNearestSecondASM
+        method_nearest_secondASM.argtypes = [ndpointer(c_double), c_int, c_double, c_double, c_int]
+        method_nearest_secondASM.restype = c_int
+        index = method_nearest_secondASM(
+            new_arr,
+            arr_size,
+            value,
+            difference,
+            index
+        )
         return index
 
     def calculate_error(self, input_str, str_len, start_x, finish_x, amount_x, fun):
         exact_value = []
-        AdditionalCalculation(self.lib).\
+        exact_value = AdditionalCalculation(self.lib).\
             calculate_expression_in_range(
             input_str,
             str_len,
