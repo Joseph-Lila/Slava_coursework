@@ -24,6 +24,21 @@ class TeilorInterpolator:
         for item in der:
             for i in range(arr_size):
                 item.append(0)
+        der[0][0] = left_final_derivate(fun, h)
+        for i in range(arr_size):
+            der[i][0]= (fun[i + 1] - fun[i - 1]) / (arg[i + 1] - arg[i - 1])
+        der[arr_size - 1][0] = right_final_derivate(fun, h, arr_size)
+
+        for i in range(max_derrivative_order):
+            der_temp = []
+            for j in range(arr_size):
+                der_temp[j] = der[j][i - 1]
+            der[0][k] = left_final_derivate(der_temp, h)
+            for i in range(arr_size - 1):
+                der[i][k] = (der[i + 1][k - 1] - der[i - 1][k - 1]) / (arg[i + 1] - arg[i - 1])
+            der[arr_size - 1][k] = right_final_derivate(der_temp, h, arr_size)
+
+        return der
 
 
     def left_final_derivate(self, fun, h):
