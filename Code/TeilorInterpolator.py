@@ -18,7 +18,6 @@ class TeilorInterpolator:
             x += deltaX
         return 1
 
-
     def calculate_all_derivation_with_extreme(self, arg, fun, arr_size, h, max_derrivative_order):
         der = [[] for i in range(arr_size)]
         for item in der:
@@ -32,7 +31,7 @@ class TeilorInterpolator:
         for k in range(max_derrivative_order):
             der_temp = []
             for j in range(arr_size):
-                der_temp[j] = der[j][i - 1]
+                der_temp[j] = der[j][k - 1]
             der[0][k] = self.left_final_derivate(der_temp, h)
             for i in range(arr_size - 1):
                 der[i][k] = (der[i + 1][k - 1] - der[i - 1][k - 1]) / (arg[i + 1] - arg[i - 1])
@@ -83,6 +82,7 @@ class TeilorInterpolator:
         for i in range(len(amount_x)):
             error += abs(exact_value[i] - fun[i])
         return error / amount_x
+
 
 if __name__ == "__main__":
     TeilorInterpolator(None).calculate_all_derivation_with_extreme(1, 2, 5, 1, 1)
