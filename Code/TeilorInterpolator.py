@@ -21,7 +21,9 @@ class TeilorInterpolator:
 
     def calculate_all_derivation_with_extreme(self, arg, fun, arr_size, h, max_derrivative_order):
         der = [[] for i in range(arr_size)]
-        print('23')
+        for item in der:
+            for i in range(arr_size):
+                item.append(0)
 
 
     def left_final_derivate(self, fun, h):
