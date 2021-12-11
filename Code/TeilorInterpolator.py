@@ -64,5 +64,7 @@ class TeilorInterpolator:
             error += abs(exact_value[i] - fun[i])
         return  error / amount_x
 
+        y = 123
+
 if __name__ == "__main__":
     TeilorInterpolator(None).calculate_all_derivation_with_extreme(1, 2, 5, 1, 1)
