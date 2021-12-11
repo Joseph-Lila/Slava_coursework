@@ -5,6 +5,7 @@ class TeilorInterpolator:
 
     def teilor_interpolate(self, x_values, y_values, initial_count, start, end, dots_count, x_buffer, y_buffer):
         x  = 123
+        y = 321
 
     def calculate_all_derivation_with_extreme(self, arg, fun, arr_size, h, max_derrivative_order):
         pass
