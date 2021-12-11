@@ -6,4 +6,9 @@ def fact(n):
     return n * fact(n - 1)
 
 def sum(a: int , b: int) -> int:
+    '''
+    :param a:
+    :param b:
+    :return:
+    '''
     return a + b
