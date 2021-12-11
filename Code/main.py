@@ -27,7 +27,7 @@ def main():
         calculate_expression_in_range\
         (
             c_char_p(expr),
-            len(expr),
+            c_int(len(expr)),
             start,
             finish,
             size_initial,
@@ -41,10 +41,40 @@ def main():
     print("\n\n")
 
     size_interpolate = 100
+
     x_teilor_interpolate = []
     y_teilor_interpolate = []
 
-    #
+    x_teilor_interpolate, y_teilor_interpolate = TeilorInterpolator(lib).\
+        teilor_interpolate(
+        x_initial,
+        y_initial,
+        size_initial,
+        start,
+        finish,
+        size_interpolate,
+        x_teilor_interpolate,
+        y_teilor_interpolate
+    )
+
+    print("-----X-----")
+    for i in range(size_interpolate):
+        print(x_teilor_interpolate[i])
+    print("-----------")
+    print("-----Y-----")
+    for i in range(size_interpolate):
+        print(y_teilor_interpolate[i])
+    print("-----------")
+    error = TeilorInterpolator(lib).\
+        calculate_error(
+        expr,
+        len(expr),
+        start,
+        finish,
+        size_interpolate,
+        y_teilor_interpolate
+    )
+    print("error = ", error)
 
 
 if __name__ == "__main__":

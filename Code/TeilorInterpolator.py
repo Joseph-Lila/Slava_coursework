@@ -1,4 +1,5 @@
 from Operations import fact
+from AdditionalCalculation import AdditionalCalculation
 from ctypes import *
 
 
@@ -19,17 +20,19 @@ class TeilorInterpolator:
         x = start
         deltaX = (end - start) / (dots_count - 1)
         for i in range(dots_count):
-            x_buffer[i] = x
-            y_buffer[i] = self.teilor_function_value(
-                x,
-                x_values,
-                y_values,
-                initial_count,
-                derivation,
-                count_of_derivative
+            x_buffer.append(x)
+            y_buffer.append(
+                self.teilor_function_value(
+                    x,
+                    x_values,
+                    y_values,
+                    initial_count,
+                    derivation,
+                    count_of_derivative
+                )
             )
             x += deltaX
-        return 1
+        return x_buffer, y_buffer
 
     def calculate_all_derivation_with_extreme(self, arg, fun, arr_size, h, max_derrivative_order):
         der = [[] for i in range(arr_size)]
@@ -37,16 +40,16 @@ class TeilorInterpolator:
             for i in range(arr_size):
                 item.append(0)
         der[0][0] = self.left_final_derivate(fun, h)
-        for i in range(arr_size):
+        for i in range(1, arr_size - 1):
             der[i][0] = (fun[i + 1] - fun[i - 1]) / (arg[i + 1] - arg[i - 1])
         der[arr_size - 1][0] = self.right_final_derivate(fun, h, arr_size)
 
-        for k in range(max_derrivative_order):
+        for k in range(1, max_derrivative_order):
             der_temp = []
             for j in range(arr_size):
-                der_temp[j] = der[j][k - 1]
+                der_temp.append(der[j][k - 1])
             der[0][k] = self.left_final_derivate(der_temp, h)
-            for i in range(arr_size - 1):
+            for i in range(1, arr_size - 1):
                 der[i][k] = (der[i + 1][k - 1] - der[i - 1][k - 1]) / (arg[i + 1] - arg[i - 1])
             der[arr_size - 1][k] = self.right_final_derivate(der_temp, h, arr_size)
 
@@ -100,7 +103,15 @@ class TeilorInterpolator:
 
     def calculate_error(self, input_str, str_len, start_x, finish_x, amount_x, fun):
         exact_value = []
-        self.lib.calculateExpressionInRange(input_str, str_len, start_x, finish_x, amount_x, exact_value)
+        AdditionalCalculation(self.lib).\
+            calculate_expression_in_range(
+            input_str,
+            str_len,
+            start_x,
+            finish_x,
+            amount_x,
+            exact_value
+        )
         error = 0
         for i in range(amount_x):
             error += abs(exact_value[i] - fun[i])
