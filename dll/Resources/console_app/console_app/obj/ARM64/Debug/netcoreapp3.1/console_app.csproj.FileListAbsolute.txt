@@ -1,0 +1,14 @@
+d:\Программирование\АВС\курсач\console_app\console_app\bin\ARM64\Debug\netcoreapp3.1\console_app.exe
+d:\Программирование\АВС\курсач\console_app\console_app\bin\ARM64\Debug\netcoreapp3.1\console_app.deps.json
+d:\Программирование\АВС\курсач\console_app\console_app\bin\ARM64\Debug\netcoreapp3.1\console_app.runtimeconfig.json
+d:\Программирование\АВС\курсач\console_app\console_app\bin\ARM64\Debug\netcoreapp3.1\console_app.runtimeconfig.dev.json
+d:\Программирование\АВС\курсач\console_app\console_app\bin\ARM64\Debug\netcoreapp3.1\console_app.dll
+d:\Программирование\АВС\курсач\console_app\console_app\bin\ARM64\Debug\netcoreapp3.1\console_app.pdb
+d:\Программирование\АВС\курсач\console_app\console_app\obj\ARM64\Debug\netcoreapp3.1\console_app.csproj.AssemblyReference.cache
+d:\Программирование\АВС\курсач\console_app\console_app\obj\ARM64\Debug\netcoreapp3.1\console_app.GeneratedMSBuildEditorConfig.editorconfig
+d:\Программирование\АВС\курсач\console_app\console_app\obj\ARM64\Debug\netcoreapp3.1\console_app.AssemblyInfoInputs.cache
+d:\Программирование\АВС\курсач\console_app\console_app\obj\ARM64\Debug\netcoreapp3.1\console_app.AssemblyInfo.cs
+d:\Программирование\АВС\курсач\console_app\console_app\obj\ARM64\Debug\netcoreapp3.1\console_app.csproj.CoreCompileInputs.cache
+d:\Программирование\АВС\курсач\console_app\console_app\obj\ARM64\Debug\netcoreapp3.1\console_app.dll
+d:\Программирование\АВС\курсач\console_app\console_app\obj\ARM64\Debug\netcoreapp3.1\console_app.pdb
+d:\Программирование\АВС\курсач\console_app\console_app\obj\ARM64\Debug\netcoreapp3.1\console_app.genruntimeconfig.cache

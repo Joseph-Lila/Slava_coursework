@@ -1,0 +1,28 @@
+﻿  pch.cpp
+  dllmain.cpp
+  lagrange_interpolator.cpp
+D:\University\Slava_coursework\dll\Resources\dll_app\dll_app\lagrange_interpolator.cpp(15,152): warning C4273: LagrangeInterpolate: несовместимое связывание dll
+D:\University\Slava_coursework\dll\Resources\dll_app\dll_app\my_library.h(23,35): message : см. предыдущее определение "LagrangeInterpolate"
+  my_functions.cpp
+D:\University\Slava_coursework\dll\Resources\dll_app\dll_app\my_functions.cpp(27,22): warning C4273: my_function: несовместимое связывание dll
+D:\University\Slava_coursework\dll\Resources\dll_app\dll_app\my_library.h(19,35): message : см. предыдущее определение "my_function"
+D:\University\Slava_coursework\dll\Resources\dll_app\dll_app\my_functions.cpp(40,26): warning C4273: my_sum: несовместимое связывание dll
+D:\University\Slava_coursework\dll\Resources\dll_app\dll_app\my_library.h(20,34): message : см. предыдущее определение "my_sum"
+D:\University\Slava_coursework\dll\Resources\dll_app\dll_app\my_functions.cpp(44,47): warning C4273: my_double_multiply: несовместимое связывание dll
+D:\University\Slava_coursework\dll\Resources\dll_app\dll_app\my_library.h(21,35): message : см. предыдущее определение "my_double_multiply"
+D:\University\Slava_coursework\dll\Resources\dll_app\dll_app\my_functions.cpp(58,124): warning C4273: calculateExpressionInRange: несовместимое связывание dll
+D:\University\Slava_coursework\dll\Resources\dll_app\dll_app\my_library.h(17,38): message : см. предыдущее определение "calculateExpressionInRange"
+D:\University\Slava_coursework\dll\Resources\dll_app\dll_app\my_functions.cpp(78,66): warning C4273: calculateExpression: несовместимое связывание dll
+D:\University\Slava_coursework\dll\Resources\dll_app\dll_app\my_library.h(16,35): message : см. предыдущее определение "calculateExpression"
+D:\University\Slava_coursework\dll\Resources\dll_app\dll_app\my_functions.cpp(89,21): warning C4018: <: несоответствие типов со знаком и без знака
+D:\University\Slava_coursework\dll\Resources\dll_app\dll_app\my_functions.cpp(150,20): warning C4018: <: несоответствие типов со знаком и без знака
+D:\University\Slava_coursework\dll\Resources\dll_app\dll_app\my_functions.cpp(192,20): warning C4018: <: несоответствие типов со знаком и без знака
+  teilor_interpolator.cpp
+D:\University\Slava_coursework\dll\Resources\dll_app\dll_app\teilor_interpolator.cpp(17,150): warning C4273: TeilorInterpolate: несовместимое связывание dll
+D:\University\Slava_coursework\dll\Resources\dll_app\dll_app\my_library.h(24,35): message : см. предыдущее определение "TeilorInterpolate"
+D:\University\Slava_coursework\dll\Resources\dll_app\dll_app\teilor_interpolator.cpp(235,109): warning C4273: calculate_error: несовместимое связывание dll
+D:\University\Slava_coursework\dll\Resources\dll_app\dll_app\my_library.h(26,35): message : см. предыдущее определение "calculate_error"
+  Создание кода...
+     Создается библиотека D:\University\Slava_coursework\dll\Resources\dll_app\Debug\dll_app.lib и объект D:\University\Slava_coursework\dll\Resources\dll_app\Debug\dll_app.exp
+LINK : warning LNK4217: Символ "_calculateExpressionInRange", определенный в "my_functions.obj", импортирован "teilor_interpolator.obj" в функции "_calculate_error".
+  dll_app.vcxproj -> D:\University\Slava_coursework\dll\Resources\dll_app\Debug\dll_app.dll
