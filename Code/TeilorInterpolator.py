@@ -26,7 +26,6 @@ class TeilorInterpolator:
                 item.append(0)
 
 
-
     def left_final_derivate(self, fun, h):
         k = 0
         res =-fun[k + 2] + 4 * fun[k + 1] - 3 * fun[k]
