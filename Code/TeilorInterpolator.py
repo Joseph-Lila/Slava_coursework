@@ -58,9 +58,11 @@ class TeilorInterpolator:
 
     def calculate_error(self, input_str, str_len, start_x, finish_x, amount_x, fun):
         exact_value = []
-        self.lib.calculateExpressionInRange()
-
+        self.lib.calculateExpressionInRange(input_str, str_len, start_x, finish_x, amount_x, exact_value)
         error = 0
+        for i in range(len(amount_x)):
+            error += abs(exact_value[i] - fun[i])
+        return  error / amount_x
 
 if __name__ == "__main__":
     TeilorInterpolator(None).calculate_all_derivation_with_extreme(1, 2, 5, 1, 1)
