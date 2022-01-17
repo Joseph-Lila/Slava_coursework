@@ -10,7 +10,7 @@ def calculate_expression_in_range(input_str, str_len, start_x, finish_x, amount_
     for i in range(amount_x):
         container.append(calculate_expression(input_str, str_len, temp_x))
         temp_x += delta_x
-    return container
+    return container/
 
 
 def teilor_interpolate(x_values, y_values, initial_count, start, end, dots_count, x_buffer, y_buffer, lib):
